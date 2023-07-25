@@ -22,7 +22,6 @@ output_path = os.path.normpath(os.path.join(PROJECT.getImagePath(), "four_view")
 #output_path = "C:\\Users\\19814\\Desktop\\Image2Texture\\babyYodaRig_v008\\scenes\\images\\sd_output\\lantent_space_image_1.png"
 output_filename = "four_view_1.png"
 camera_name = "cgmProjectionCamera1" 
-#rotation_angle = [45,135,135,45]
 fourview_image_path = None
 
 
@@ -102,15 +101,21 @@ def composeImage(self, display=True):
         
     width, height = image[0].size
     
-    result_width = width * 2
-    result_height = height * 2
+    #result_width = width * 2
+    #result_height = height * 2
+    result_width = width * 4
 
-    result_image = Image.new("RGBA", (result_width, result_height))
+    result_image = Image.new("RGBA", (result_width, height))
+    
+    '''result_image.paste(image[0], (0, 0))
+    result_image.paste(image[1], (width, 0))
+    result_image.paste(image[2], (0, height))
+    result_image.paste(image[3], (width, height))'''
     
     result_image.paste(image[0], (0, 0))
     result_image.paste(image[1], (width, 0))
-    result_image.paste(image[2], (0, height))
-    result_image.paste(image[3], (width, height))
+    result_image.paste(image[2], (width * 2, 0))
+    result_image.paste(image[3], (width * 3, 0))
     
     result_image.save(output_name_fourview_compose)
     
@@ -124,13 +129,19 @@ def divideImage(filepath):
     original_image = Image.open(filepath)
     
     width, height = original_image.size
-    split_width = width // 2
-    split_height = height // 2
+    #split_width = width // 2
+    #split_height = height // 2
 
-    image1 = original_image.crop((0, 0, split_width, split_height))
+    '''image1 = original_image.crop((0, 0, split_width, split_height))
     image2 = original_image.crop((split_width, 0, width, split_height))
     image3 = original_image.crop((0, split_height, split_width, height))
-    image4 = original_image.crop((split_width, split_height, width, height))
+    image4 = original_image.crop((split_width, split_height, width, height))'''
+    
+    split_width = width // 4
+    image1 = original_image.crop((0, 0, split_width, height))
+    image2 = original_image.crop((split_width, 0, split_width * 2, height))
+    image3 = original_image.crop((split_width*  2, 0, split_width * 3, height))
+    image4 = original_image.crop((split_width * 3, 0, width, height))
     
     images = [image1, image2,image3,image4]
     images_paths = []
