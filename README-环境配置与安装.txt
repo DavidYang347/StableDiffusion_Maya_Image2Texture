@@ -20,7 +20,11 @@
 四、将插件的压缩包解压以后，复制粘贴到以下maya的脚本文件夹中：
 C:\Users\“此处替换为自己的用户名”\Documents\maya\2022\scripts
 
-五、在maya的scripts editor中输入以下python代码，打开Image2Textrure的ui界面：
+五、进入C:\Users\“此处替换为自己的用户名”\Documents\maya\2022\scripts\cgm\tools\stableDiffusion
+      将OneClickGenerateTexture和stableDiffusionUI两个文件替换掉，就可以使用up主自己写的一键生成材质贴图的功能了
+
+
+六、在maya的scripts editor中输入以下python代码，打开Image2Textrure的ui界面：
 
 import sys
 import imp
@@ -40,7 +44,7 @@ ui_instance = stableDiffusionUI.ui()
 ui_instance.show()
 
 
-六、将上面的脚本文件保存为Custom中的自定义插件：
+七、将上面的脚本文件保存为Custom中的自定义插件：
 在scripts editor脚本编辑器中点击 Save scripts to Shelf...按钮，给插件命名为Image2Texture
 这样以后每次打开maya，都可以直接点击Custome中的Image2Texture，快捷打开插件
 ，
