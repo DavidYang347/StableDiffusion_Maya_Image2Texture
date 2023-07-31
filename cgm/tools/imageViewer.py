@@ -26,6 +26,8 @@ mUI = cgmUI.mUI
 from cgm.core import cgm_General as cgmGEN
 from tempfile import NamedTemporaryFile
 
+import base64
+
 #>>> Root settings =============================================================
 __version__ = cgmGEN.__RELEASESTRING
 __toolname__ ='imageViewer'
@@ -319,3 +321,20 @@ def viewImageFromString(image_string):
     temp_file.write(image_string)
 
     ui([temp_file.name], {'path': temp_file.name})
+    
+    
+def encodeImageToString(composite_path):
+    
+    with open(composite_path, "rb") as c:
+         # Read the image data
+        composite_data = c.read()
+
+    # Encode the image data as base64
+        composite_base64 = base64.b64encode(composite_data)
+
+    # Convert the base64 bytes to string
+        composite_string = composite_base64.decode("utf-8")
+
+        c.close()
+        
+    return composite_string
