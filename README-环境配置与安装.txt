@@ -15,6 +15,7 @@
 三、安装2022 mayapy对应版本的numpy:
 1. 控制台进入 C:\Program Files\Autodesk\Maya2022\bin
 2. 输入mayapy.exe -m pip install numpy ; 运行以后，自动联网安装1.21.6版本的numpy
+3. 在maya的bin文件（D:\Program Files\Autodesk\Maya2024\bin）中安装pillow，输入mayapy -m pip install pillow
 
 
 四、将插件的压缩包解压以后，复制粘贴到以下maya的脚本文件夹中：
